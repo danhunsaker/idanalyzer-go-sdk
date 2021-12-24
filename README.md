@@ -219,7 +219,7 @@ json.Unmarshal(input_raw, &data);
 if(data.Reference == "" || data.Hash == "") exit();  
 
 // Initialize DocuPass with your credentials and company name  
-docupass := NewDocuPassAPI("Your API Key", "My Company Inc.", "US");  
+docupass := idanalyzer.NewDocuPassAPI("Your API Key", "My Company Inc.", "US");  
 
 // Validate result with DocuPass API Server  
 validation, _ := docupass.Validate(data.Reference, data.Hash);  
@@ -262,7 +262,7 @@ For the final step, you could create two web pages (URLS set via `SetRedirection
 You can get user to review and remotely sign legal document in DocuPass without identity verification, to do so you need to create a DocuPass Signature session.
 
 ```go
-docupass := NewDocuPassAPI(apikey, "My Company Inc.", api_region);
+docupass := idanalyzer.NewDocuPassAPI(apikey, "My Company Inc.", api_region);
 
 // We need to set an identifier so that we know internally who is signing the document, this string will be returned in the callback. You can use your own user/customer id.
 docupass.SetCustomID(emailAddress);
@@ -314,11 +314,11 @@ If you have enabled Vault, Core API and DocuPass will both return a vault entry 
 
 ```go
 import (
-    "github.com/danhunsaker/idnanalyzer-go-sdk"
+    "github.com/danhunsaker/idanalyzer-go-sdk"
 )
 
 // Initialize Vault API with your credentials  
-vault := NewVaultAPI("API Key", "US");  
+vault := idanalyzer.NewVaultAPI("API Key", "US");  
   
 // Get the vault entry using Vault Entry Identifier received from Core API/DocuPass 
 vaultdata := vault.Get("VAULT_ID");
@@ -346,7 +346,7 @@ import (
 )
 
 // Initialize AML API with your credentials
-aml := NewAMLAPI(apikey, api_region);
+aml := idanalyzer.NewAMLAPI(apikey, api_region);
 
 // Set AML database to only search the PEP category
 aml.SetAMLDatabase("global_politicians,eu_cors,eu_meps");
